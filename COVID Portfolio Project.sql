@@ -78,7 +78,7 @@ where continent is not null
 ORDER BY 1, 2
 
 
--- We take these out as they are not included in the above queries and want to stay consistent 
+-- Take out as they are not included in the above queries and want to stay consistent 
 -- European Union is part of Europe
 
 Select location, SUM(cast(new_deaths as int)) as TotalDeathCount
@@ -108,8 +108,6 @@ where dea.continent is not null
 
 Select *, (RollingPeopleVaccinated/Population)*100 
 From PopvsVac;
-
-
 
 
 -- TEMP TABLE
