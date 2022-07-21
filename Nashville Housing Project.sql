@@ -3,7 +3,7 @@
 SELECT * 
 FROM NashvilleHousing
 
--- Standardize Date Format (remove the time from the end of date)
+-- Standardize Date Format 
 
 Select SaleDate, CONVERT(Date,SaleDate)
 FROM NashvilleHousing
@@ -17,7 +17,7 @@ Add SaleDateConverted Date;
 UPDATE NashvilleHousing
 SET SaleDateConverted = CONVERT(Date,SaleDate)
 
--- Populate Property Address data (If rows have same ParcellID and the property address is null populate the address with the parcelID that's not null
+-- Populate Property Address data 
 
 SELECT *
 FROM NashvilleHousing
@@ -38,7 +38,6 @@ JOIN NashvilleHousing b
 	ON a.ParcelID = b.ParcelID
 	AND a.[UniqueID ]<> b.[UniqueID ]
 WHERE a.PropertyAddress is null
-
 
 
 --- Breaking out Address into Individual Colummns (Address, City, State)
@@ -93,8 +92,6 @@ UPDATE NashvilleHousing
 SET OwnerSplitState = PARSENAME(REPLACE(OwnerAddress,',','.'),1)
 
 
-
-
 -- Change Y and N to Yes and No in "Sold as Vacant" field
 
 SELECT DISTINCT(SoldAsVacant), COUNT(SoldAsVacant)
@@ -115,8 +112,7 @@ SET SoldAsVacant = CASE When SoldAsVacant = 'Y' THEN 'Yes'
 	ELSE SoldAsVacant 
 	END
 
-
--- Remove Duplicates (row num is numbering the rows and goes to 2 IF all of those columns have the same data so if there's a 2, it's a duplicate)
+-- Remove Duplicates 
 
 WITH RowNumCTE AS(
 SELECT *, 
